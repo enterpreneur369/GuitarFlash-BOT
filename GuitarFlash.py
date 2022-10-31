@@ -2,7 +2,8 @@ import pyautogui
 import keyboard
 from PIL import ImageGrab
 from time import sleep
-
+from pynput.keyboard import Controller
+keyboardController = Controller()
 # You may use the following code to find the position of the mouse cursor on the screen.
 # Doing so you can adjust the code to match your screen specifications.
 # Comment the rest of the code to run this part
@@ -18,7 +19,8 @@ GREEN_BUTTON_X = 160
 RED_BUTTON_X = 250
 YELLOW_BUTTON_X = 350
 BLUE_BUTTON_X = 440
-ORANGE_BUTTON_X = 540
+#ORANGE_BUTTON_X = 540
+ORANGE_BUTTON_X = 530
 THRESHOLD = 255  # Sometimes it can be useful to lower the threshold to have more accuracy finding the buttons
 
 
@@ -39,7 +41,9 @@ def play_guitarflash():
         for key in key_bidings:
             color = screen.getpixel((key_bidings[key], Y))
             if color >= (THRESHOLD, THRESHOLD, THRESHOLD):
-                pyautogui.press(key)
+                #pyautogui.press(key)
+                keyboardController.press(key)
+                keyboardController.release(key)
 
 
 if __name__ == '__main__':
